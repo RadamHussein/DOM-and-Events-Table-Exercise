@@ -29,7 +29,6 @@ function buildTable(tableArr) {
 	//create a new table
 	var newTable = document.createElement("table");
 	var newThead = document.createElement("thead");
-	//newThead.style.border = "solid";
 
 	//add new table to the doc
 	document.body.appendChild(newTable);
@@ -44,6 +43,8 @@ function buildTable(tableArr) {
 			headRow.textContent = tableArr[i].text;
 			newThead.appendChild(headRow);
 			headRow.style.border = "solid 1px";
+			headRow.style.padding = "30px";
+			headRow.style.textAlign = "center";
 		}
 		//.row is a cell row
 		else {
@@ -59,6 +60,8 @@ function buildTable(tableArr) {
 			cellRow.textContent = tableArr[i].text;
 			newTrow.appendChild(cellRow);
 			cellRow.style.border = "solid 1px";
+			cellRow.style.padding = "30px";
+			cellRow.style.textAlign = "center";
 		}
 	}
 	return newTable;
@@ -66,6 +69,8 @@ function buildTable(tableArr) {
 
 //build the table
 var table = buildTable(tableArr);
+
+//apply table styling
 table.border = "1";
 table.style.border = "solid 1px";
 table.style.borderCollapse = "collapse";
@@ -106,6 +111,8 @@ function changeCell(input) {
 	if (input == "up") {
 		var upNode = cellSelect.parentNode;
 		upNode = upNode.previousElementSibling;
+
+		//check for a sibling of current tr element
 		if (upNode != null) {
 			var cellsToTheRight = getTableLocation(cellSelect);
 			cellSelect.style.border = "solid 1px";
@@ -122,6 +129,8 @@ function changeCell(input) {
 	else if (input == "down") {
 		var downNode = cellSelect.parentNode;
 		downNode = downNode.nextElementSibling;
+
+		//check for a sibling of current tr element
 		if (downNode != null) {
 			var cellsToTheRight = getTableLocation(cellSelect);
 			cellSelect.style.border = "solid 1px";
@@ -136,6 +145,7 @@ function changeCell(input) {
 		}
 	}
 	else if (input == "left") {
+		//check for a left sibling
 		if (cellSelect.previousElementSibling != null) {
 			cellSelect.style.border = "solid 1px";
 			cellSelect = cellSelect.previousElementSibling;
@@ -143,6 +153,7 @@ function changeCell(input) {
 		}
 	}
 	else if (input == "right") {
+		//check for a right sibling
 		if (cellSelect.nextElementSibling != null) {
 			cellSelect.style.border = "solid 1px";
 			cellSelect = cellSelect.nextElementSibling;
@@ -187,7 +198,7 @@ cellSelect = cellSelect.lastElementChild;
 cellSelect = cellSelect.firstElementChild;
 cellSelect = cellSelect.firstElementChild;
 console.log("cellSelect is set to " + cellSelect);
-cellSelect.style.border = "thick solid";
+cellSelect.style.border = "solid 3px";
 
 
 
