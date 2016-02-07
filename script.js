@@ -29,6 +29,7 @@ function buildTable(tableArr) {
 	//create a new table
 	var newTable = document.createElement("table");
 	var newThead = document.createElement("thead");
+	//newThead.style.border = "solid";
 
 	//add new table to the doc
 	document.body.appendChild(newTable);
@@ -42,6 +43,7 @@ function buildTable(tableArr) {
 			var headRow = document.createElement("th");
 			headRow.textContent = tableArr[i].text;
 			newThead.appendChild(headRow);
+			headRow.style.border = "solid 1px";
 		}
 		//.row is a cell row
 		else {
@@ -56,6 +58,7 @@ function buildTable(tableArr) {
 			var cellRow = document.createElement("td");
 			cellRow.textContent = tableArr[i].text;
 			newTrow.appendChild(cellRow);
+			cellRow.style.border = "solid 1px";
 		}
 	}
 	return newTable;
@@ -64,10 +67,13 @@ function buildTable(tableArr) {
 //build the table
 var table = buildTable(tableArr);
 table.border = "1";
+table.style.border = "solid 1px";
+table.style.borderCollapse = "collapse";
 
 //create a div to hold buttons
 var buttonContainer = document.createElement("div");
 document.body.appendChild(buttonContainer);
+buttonContainer.style.margin = "10px";
 
 //create and add buttons
 var up = document.createElement("button");
@@ -102,7 +108,7 @@ function changeCell(input) {
 		upNode = upNode.previousElementSibling;
 		if (upNode != null) {
 			var cellsToTheRight = getTableLocation(cellSelect);
-			cellSelect.style.border = "initial";
+			cellSelect.style.border = "solid 1px";
 			cellSelect = upNode;
 			cellSelect = cellSelect.firstElementChild;
 
@@ -110,7 +116,7 @@ function changeCell(input) {
 					cellSelect = cellSelect.nextElementSibling;
 				}
 
-			cellSelect.style.border = "thick solid";
+			cellSelect.style.border = "solid 3px";
 		}
 	}
 	else if (input == "down") {
@@ -118,7 +124,7 @@ function changeCell(input) {
 		downNode = downNode.nextElementSibling;
 		if (downNode != null) {
 			var cellsToTheRight = getTableLocation(cellSelect);
-			cellSelect.style.border = "initial";
+			cellSelect.style.border = "solid 1px";
 			cellSelect = downNode;
 			cellSelect = cellSelect.firstElementChild;
 
@@ -126,21 +132,21 @@ function changeCell(input) {
 					cellSelect = cellSelect.nextElementSibling;
 				}
 
-			cellSelect.style.border = "thick solid";
+			cellSelect.style.border = "solid 3px";
 		}
 	}
 	else if (input == "left") {
 		if (cellSelect.previousElementSibling != null) {
-			cellSelect.style.border = "initial";
+			cellSelect.style.border = "solid 1px";
 			cellSelect = cellSelect.previousElementSibling;
-			cellSelect.style.border = "thick solid";
+			cellSelect.style.border = "solid 3px";
 		}
 	}
 	else if (input == "right") {
 		if (cellSelect.nextElementSibling != null) {
-			cellSelect.style.border = "initial";
+			cellSelect.style.border = "solid 1px";
 			cellSelect = cellSelect.nextElementSibling;
-			cellSelect.style.border = "thick solid";
+			cellSelect.style.border = "solid 3px";
 		}
 	}
 	else {
